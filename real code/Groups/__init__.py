@@ -57,9 +57,12 @@ def signup():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
+        enteredUser = request.form['username']
+        enteredPassword = request.form['password']
+        user = User.query.filter_by(name=enteredUser)
+        if (user == None):
             error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
+        elif ():
             error = 'Invalid password'
         else:
             session['logged_in'] = True
