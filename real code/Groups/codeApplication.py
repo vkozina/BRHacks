@@ -5,7 +5,7 @@ from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Temp/testagain.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testagain.db'
 db = SQLAlchemy(app)
 
 class User(db.Model):
