@@ -37,6 +37,21 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    error = None
+    if request.method == 'POST':
+        newUsername = request.form['username']
+        newPassword = request.form['password']
+        user = User.query.filter_by(username = newUsername).first()
+        if (user != None):
+            error = 'Choose another username'
+        else:
+            newUser = User(newUsername, newPassword)
+            db.session.add(newUser)
+            return redirect(url_for('login'))
+    return render_template('signup.html', error=error)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
