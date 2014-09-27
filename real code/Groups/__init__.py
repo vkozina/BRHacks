@@ -3,7 +3,8 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
-from database import init_db, db_session
+from database import init_db, db_session, Base
+from models import User
 
 # configuration
 #DATABASE = 'C:/Temp/testing.db'
@@ -43,12 +44,12 @@ def signup():
     if request.method == 'POST':
         newUsername = request.form['username']
         newPassword = request.form['password']
-        user = User.query.filter_by(username = newUsername).first()
+        user = User.query.filter_by(name=newUsername).first()
         if (user != None):
             error = 'Choose another username'
         else:
             newUser = User(newUsername, newPassword)
-            db.session.add(newUser)
+            db_session.add(newUser)
             return redirect(url_for('login'))
     return render_template('signup.html', error=error)
 
