@@ -70,7 +70,10 @@ def login():
             flash('You were logged in')
             return redirect(url_for('show_groups'))
     return render_template('login.html', error=error)
-
+'''
+@app.route('/edit_profile')
+def edit():
+   '''
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Text
 from database import Base
 
 class User(Base):
@@ -6,10 +6,12 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True)
     password = Column(String(120))
+    profile = Column(Text(400))
 
-    def __init__(self, name=None, password=None):
+    def __init__(self, name=None, password=None, profile=None):
         self.name = name
         self.password = password
+        self.profile = profile
 
     def __repr__(self):
         return '<User %r>' % (self.name)
