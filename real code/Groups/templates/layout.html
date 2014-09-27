@@ -37,7 +37,7 @@
       bottom: 0px;
       left: 0px;
 
-      text-align: center;
+      text-align: left;
       padding-top: 11em;
       background-color: #0188cc;
       background-image: -moz-radial-gradient(left top, circle, #6ac9f9 0%, #0188cc 60%);
@@ -105,24 +105,23 @@
   </style>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-  <h1 text-align= center>Group This!</h1>
-  <div class=metanav>
+
   {% if not session.logged_in %}
-    <form name="input" action="{{ url_for('login') }}">
+    <a href="{{ url_for('login') }}">
       <input type="submit" value="log in" class=button >
-    </form>
-    <form name="input" action="{{ url_for('signup') }}">
+    <a href="{{ url_for('signup') }}">
       <input type="submit" value="sign up" class=button>
-    </form>
   {% else %}
-    </form>
-      <form name="input" action="{{ url_for('logout') }}">
-      <input type="submit" value="log out" class=important>
-    </form>
+    <a href="{{ url_for('logout') }}">
+      <input type="submit" value="log out" class=button >
+    <a href="{{ url_for('edit_profile') }}">
+      <input type="submit" value="edit profile" class=button>
   {% endif %}
-  </div>
+
+  <h1 text-align= center>Group This!</h1>
+
   {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
+    <class=flash>{{ message }}</class>
   {% endfor %}
   {% block body %}{% endblock %}
 </div>
