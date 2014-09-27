@@ -10,6 +10,7 @@ from models import User
 #DATABASE = 'C:/Temp/testing.db'
 DEBUG = True
 SECRET_KEY = 'development key'
+USER = ''
 #USERNAME = 'admin'
 #PASSWORD = 'default'
 
@@ -60,23 +61,33 @@ def login():
     if request.method == 'POST':
         enteredUser = request.form['username']
         enteredPassword = request.form['password']
-        user = User.query.filter_by(name=enteredUser).first()
-        if (user == None):
+        u = User.query.filter_by(name=enteredUser).first()
+        if (u == None):
             error = 'Invalid username'
-        elif (enteredPassword != user.password):
+        elif (enteredPassword != u.password):
             error = 'Invalid password'
         else:
+            session['user'] = u.name
             session['logged_in'] = True
             flash('You were logged in')
             return redirect(url_for('show_groups'))
     return render_template('login.html', error=error)
-'''
-@app.route('/edit_profile')
-def edit():
-   '''
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit_profile():
+    if not session.get('logged_in'):
+        abort(401)
+    u = User.query.filter_by(name=session.get('user')).first()
+    u.profile = request.form['profile']
+    #([request.form['profile'])
+    db_session.commit()
+    flash('Profile was edited')
+    return redirect(url_for('show_groups'))
+
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
+    session.pop('user', None)
     flash('You were logged out')
     return redirect(url_for('login'))
 
@@ -86,7 +97,7 @@ def show_groups():
     groups = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     return render_template('show_groups.html', groups=groups)
 
-@app.route('/add', methods=['POST'])
+@app.route('/add_group', methods=['GET', 'POST'])
 def add_group():
     if not session.get('logged_in'):
         abort(401)
