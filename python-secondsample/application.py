@@ -93,7 +93,7 @@ response = """
     <p id="id1" style="color:red;">Things are happening. Yay <strong>amazonwebservices</strong></p>
     <button type="button" 
     onclick="document.getElementById('id1').style.color = 'green'">
-    Click Me!</button>
+    Click This Here!</button>
   </div>
   
   <div class="linksColumn"> 
