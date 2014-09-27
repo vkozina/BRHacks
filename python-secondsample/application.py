@@ -16,10 +16,11 @@ response = """
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Hi There</title>
   <style>
+
   body {
     color: #ffffff;
-    background-color: #c7c7c7;
-    font-family: Arial, sans-serif;
+    background-color: #ccffcc;
+    font-family: Impact, Charcoal, sans-serif;
     font-size:14px;
     -moz-transition-property: text-shadow;
     -moz-transition-duration: 4s;
@@ -34,11 +35,17 @@ response = """
     -webkit-transition-duration: 4s;
     text-shadow: #fff 0px 0px 25px;
   }
+div {
+    width: 300px;
+    padding: 25px;
+    border: 25px solid navy;
+    margin: 25px;
+}
   a {
-    color: #0188cc;
+    color: #00000c;
   }
   .textColumn, .linksColumn {
-    padding: 2em;
+
   }
   .textColumn {
     position: absolute;
@@ -71,6 +78,7 @@ response = """
     font-size: 500%;
     font-weight: normal;
     margin-bottom: 0em;
+    text-shadow: 5px 5px 5px #000080;
   }
   h2 {
     font-size: 200%;
@@ -89,25 +97,13 @@ response = """
 
 <body id="sample">
   <div class="textColumn">
-    <h1>Congratulations</h1>
-    <p id="id1" style="color:red;">Things are happening. Yay <strong>amazonwebservices</strong></p>
+    <h1>GroupThis!</h1>
+    <p id="id1" style="color:PaleGreen;">Make a <strong>group</strong></p>
     <button type="button" 
-    onclick="document.getElementById('id1').style.color = 'green'">
+    onclick="document.getElementById('id1').style.color = 'SpringGreen'">
     Click This Here!</button>
   </div>
-  
-  <div class="linksColumn"> 
-    <h2>What's Next?</h2>
-    <ul>
-    <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/">AWS Elastic Beanstalk overview</a></li>
-    <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/index.html?concepts.html">AWS Elastic Beanstalk concepts</a></li>
-    <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/create_deploy_Python_django.html">Deploy a Django Application to AWS Elastic Beanstalk</a></li>
-    <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/create_deploy_Python_flask.html">Deploy a Flask Application to AWS Elastic Beanstalk</a></li>
-    <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/create_deploy_Python_custom_container.html">Customizing and Configuring a Python Container</a></li>
-    <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/using-features.loggingS3.title.html">Working with Logs</a></li>
 
-    </ul>
-  </div>
 </body>
 </html>
 """
