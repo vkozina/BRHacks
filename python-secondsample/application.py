@@ -36,7 +36,7 @@ response = """
     text-shadow: #fff 0px 0px 25px;
   }
 div {
-    width: 300px;
+    width: 100%-25px;
     padding: 25px;
     border: 25px solid navy;
     margin: 25px;
@@ -44,13 +44,11 @@ div {
   a {
     color: #00000c;
   }
-  .textColumn, .linksColumn {
 
-  }
   .textColumn {
     position: absolute;
     top: 0px;
-    right: 50%;
+    right: 0px;
     bottom: 0px;
     left: 0px;
 
@@ -60,19 +58,38 @@ div {
     background-image: -moz-radial-gradient(left top, circle, #6ac9f9 0%, #0188cc 60%);
     background-image: -webkit-gradient(radial, 0 0, 1, 0 0, 500, from(#6ac9f9), to(#0188cc));
   }
-  .textColumn p {
-    width: 75%;
-    float:right;
-  }
-  .linksColumn {
-    position: absolute;
-    top:0px;
-    right: 0px;
-    bottom: 0px;
-    left: 50%;
 
-    background-color: #c7c7c7;
-  }
+.button {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 12.5px 25px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
 
   h1 {
     font-size: 500%;
@@ -85,13 +102,6 @@ div {
     font-weight: normal;
     margin-bottom: 0em;
   }
-  ul {
-    padding-left: 1em;
-    margin: 0px;
-  }
-  li {
-    margin: 1em 0em;
-  }
   </style>
 </head>
 
@@ -99,13 +109,15 @@ div {
   <div class="textColumn">
     <h1>GroupThis!</h1>
     <p id="id1" style="color:PaleGreen;">Make a <strong>group</strong></p>
-    <button type="button" 
+
+    <button class="button" 
     onclick="document.getElementById('id1').style.color = 'SpringGreen'">
     Click This Here!</button>
   </div>
 
 </body>
 </html>
+>
 """
 
 def application(environ, start_response):
