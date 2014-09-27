@@ -50,6 +50,7 @@ def signup():
         else:
             newUser = User(newUsername, newPassword)
             db_session.add(newUser)
+            db_session.commit()
             return redirect(url_for('login'))
     return render_template('signup.html', error=error)
 
@@ -59,15 +60,15 @@ def login():
     if request.method == 'POST':
         enteredUser = request.form['username']
         enteredPassword = request.form['password']
-        user = User.query.filter_by(name=enteredUser)
+        user = User.query.filter_by(name=enteredUser).first()
         if (user == None):
             error = 'Invalid username'
-        elif ():
+        elif (enteredPassword != user.password):
             error = 'Invalid password'
         else:
             session['logged_in'] = True
             flash('You were logged in')
-            return redirect(url_for('show_entries'))
+            return redirect(url_for('show_groups'))
     return render_template('login.html', error=error)
 
 @app.route('/logout')
