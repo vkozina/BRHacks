@@ -14,7 +14,7 @@ http://aws.Amazon/apache2.0/
 or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Hi There</title>
+<title>GroupMakr</title>
   <style>
 
     body {
@@ -92,7 +92,7 @@ or in the "license" file accompanying this file. This file is distributed on an 
     }
 
     h1 {
-      font-size: 500%;
+      font-size: 1000%;
       font-weight: normal;
       margin-bottom: 0em;
       text-shadow: 5px 5px 5px #000080;
@@ -134,7 +134,7 @@ or in the "license" file accompanying this file. This file is distributed on an 
 
 </body>
 </html>
->
+
 """
 
 def application(environ, start_response):
