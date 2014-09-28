@@ -26,7 +26,7 @@
       margin: 25px;
     }
     a {
-      color: ##382cba;
+      color: #00000c;
     }
 
     .textColumn {
@@ -104,6 +104,7 @@
   </style>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
+
   {% if not session.logged_in %}
     <form name="input" action="{{ url_for('login') }}">
       <input type="submit" value="log in" class=button >
@@ -112,17 +113,15 @@
       <input type="submit" value="sign up" class=button>
     </form>
   {% else %}
-  <form>
-  <form name="input" action="{{ url_for('logout') }}">
+    </form>
+      <form name="input" action="{{ url_for('logout') }}">
       <input type="submit" value="log out" class=button>
-  </form>
+    </form>
   {% endif %}
-
+  
   {% for message in get_flashed_messages() %}
-    <class=flash>{{ message }}</class>
+    <div class=flash>{{ message }}</div>
   {% endfor %}
-
-  <h1 text-align= center>Group This!</h1
-
+    <h1 text-align= center>Group This!</h1>
   {% block body %}{% endblock %}
 </div>
