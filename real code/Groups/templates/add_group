@@ -7,6 +7,8 @@
         <dt>Purpose:
         <dd><textarea type=text name=text rows=5 cols=40></textarea>
         <dd><input type=submit value='Submit'>
+        <dt>Contact info:
+        <dd><input type=text size=30 name=contact>
       </dl>
     </form>
  {% endblock %}

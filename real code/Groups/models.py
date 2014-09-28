@@ -22,10 +22,12 @@ class Groups(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(50), unique=True)
     text = Column(String(120))
+    contact = Column(String(50))
 
-    def __init__(self, title=None, text=None):
+    def __init__(self, title=None, text=None, contact=None):
         self.title = title
         self.text = text
+        self.contact = contact
 
     def __repr__(self):
         return '<Groups %r>' % (self.title)

@@ -64,7 +64,7 @@ font-size:200%;
 <body>
 <h1>{{data}}</h1> 
 <div class=metanav>
-<p2> {{descript}}</p2>
+<p2> {{descript}} {{contact}}</p2>
 
 </body>
 </html>

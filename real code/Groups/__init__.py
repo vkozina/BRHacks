@@ -105,8 +105,7 @@ def logout():
 @app.route('/show')
 def show_groups():
     if not session.get('logged_in'):
-        abort(401)
-    error = None
+        return redirect(url_for('home'))
     
     groups = Groups.query.order_by(Groups.id)
     user = User.query.filter_by(name=session.get('user')).first()
@@ -149,7 +148,7 @@ def add_group():
         abort(401)
     error = None
     if request.method == 'POST':
-        newGroup = Groups(request.form['title'], request.form['text'])
+        newGroup = Groups(request.form['title'], request.form['text'], request.form['contact'])
         db_session.add(newGroup)
         db_session.commit()
         #g.db.execute('insert into groups (title, text) values (?, ?)',
@@ -164,7 +163,8 @@ def single_profile():
     name = request.args.get('name')
     des = Groups.query.filter_by(title=name).first()
     desc=des.text
-    return render_template('single_profile', data = name, descript=desc, method = 'single_profile')
+    contact = des.contact
+    return render_template('single_profile', data = name, descript=desc, contact=contact, method = 'single_profile')
 
 if __name__ == '__main__':
     app.run()
