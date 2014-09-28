@@ -5,7 +5,7 @@
     <a href="{{ url_for('add_group') }}"class=button size="500">Make a new group</a>
     <ul class=Groups>
     {% for group in groups %}
-      <li><h2>{{ group.title }}</h2>{{ group.text|safe }}
+      <li> <h2> <a href="{{ url_for('single_profile') }}?name={{group.title}}">{{group.title}} </a></h2>{{ group.text|safe }}
     {% else %}
       <li><em>Unbelievable.  No entries here so far</em>
     {% endfor %}
