@@ -78,14 +78,14 @@ def edit_profile():
     if not session.get('logged_in'):
         abort(401)
     error = None
+    u = User.query.filter_by(name=session.get('user')).first()
     if request.method == 'POST':
-        u = User.query.filter_by(name=session.get('user')).first()
         u.profile = request.form.get('profile')
         #([request.form['profile'])
         db_session.commit()
         flash('Profile was edited')
         return redirect(url_for('show_groups'))
-    return render_template('edit_profile', error=error)
+    return render_template('edit_profile', enteredText=u.profile)
 
 @app.route('/logout')
 def logout():
