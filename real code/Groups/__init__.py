@@ -6,6 +6,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from database import init_db, db_session, Base
 from models import User, Groups
 from rhinetest import Rhine
+import math
 
 # configuration
 #DATABASE = 'C:/Temp/testing.db'
@@ -105,6 +106,7 @@ def show_groups():
     if not session.get('logged_in'):
         abort(401)
     error = None
+    
     groups = Groups.query.order_by(Groups.id)
     userText = User.query.filter_by(name=session.get('user')).first().profile.split()
     
@@ -114,12 +116,14 @@ def show_groups():
         groupText = group.text.split()
         difference = compareTexts(userText, groupText)
         groupList.append(group)
+        if math.isnan(difference):
+            difference = 1000
         order.append(difference)
 
     #session['groupOrder'] = order
-    groups = sort(order, groups)
-    groups = groups[::-1]
-    return render_template('show_groups.html', groups=groups)
+    
+    groups = sort(order, groupList)
+    return render_template('show_groups.html', groups=groups, order=order)
 
 def compareTexts(text1, text2):
     '''
