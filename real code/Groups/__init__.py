@@ -21,6 +21,7 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 init_db()
 
+
 def connect_db():
     #return sqlite3.connect(app.config['DATABASE'])
     return db_session
@@ -108,22 +109,24 @@ def show_groups():
     error = None
     
     groups = Groups.query.order_by(Groups.id)
-    userText = User.query.filter_by(name=session.get('user')).first().profile.split()
-    
-    groupList = list()
-    order = list()
-    for group in groups:
-        groupText = group.text.split()
-        difference = compareTexts(userText, groupText)
-        groupList.append(group)
-        if math.isnan(difference):
-            difference = 1000
-        order.append(difference)
+    user = User.query.filter_by(name=session.get('user')).first()
 
-    #session['groupOrder'] = order
-    
-    groups = sort(order, groupList)
-    return render_template('show_groups.html', groups=groups, order=order)
+    if (user.profile != None):
+        userText = user.profile.split()
+        groupList = list()
+        order = list()
+        for group in groups:
+            groupText = group.text.split()
+            difference = compareTexts(userText, groupText)
+            groupList.append(group)
+            if math.isnan(difference):
+                difference = 1000
+            order.append(difference)
+
+        #session['groupOrder'] = order
+        if len(order) > 0:
+            groups = sort(order, groupList)
+    return render_template('show_groups.html', groups=groups)
 
 def compareTexts(text1, text2):
     '''
