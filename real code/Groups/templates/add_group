@@ -3,7 +3,7 @@
         <dt>Group name:
         <dd><input type=text name='title' size=30 name=title>
         <dt>Purpose:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit value=Share>
+        <dd><textarea type=text rows=5 cols=40></textarea>
+        <dd><input type=submit name='text' value=Share>
       </dl>
     </form>

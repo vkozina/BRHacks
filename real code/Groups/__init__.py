@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
 from database import init_db, db_session, Base
-from models import User
+from models import User, Groups
 
 # configuration
 #DATABASE = 'C:/Temp/testing.db'
@@ -77,12 +77,15 @@ def login():
 def edit_profile():
     if not session.get('logged_in'):
         abort(401)
-    u = User.query.filter_by(name=session.get('user')).first()
-    u.profile = request.form['profile']
-    #([request.form['profile'])
-    db_session.commit()
-    flash('Profile was edited')
-    return redirect(url_for('show_groups'))
+    error = None
+    if request.method == 'POST':
+        u = User.query.filter_by(name=session.get('user')).first()
+        u.profile = request.form.get('profile')
+        #([request.form['profile'])
+        db_session.commit()
+        flash('Profile was edited')
+        return redirect(url_for('show_groups'))
+    return render_template('edit_profile', error=error)
 
 @app.route('/logout')
 def logout():
@@ -101,11 +104,17 @@ def show_groups():
 def add_group():
     if not session.get('logged_in'):
         abort(401)
-    g.db.execute('insert into groups (title, text) values (?, ?)',
-                 [request.form['title'], request.form['text']])
-    g.db.commit()
-    flash('New group was successfully posted')
-    return redirect(url_for('show_groups'))
+    error = None
+    if request.method == 'POST':
+        newGroup = Groups(request.form['title'], request.form['text'])
+        db_session.add(newGroup)
+        db_session.commit()
+        #g.db.execute('insert into groups (title, text) values (?, ?)',
+        #         [request.form['title'], request.form['text']])
+        #g.db.commit()
+        flash('New group was successfully posted')
+        return redirect(url_for('show_groups'))
+    return render_template('add_group', error=error)
 
 if __name__ == '__main__':
     app.run()
