@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <a href="{{ url_for('edit_profile') }}" class=button>Edit profile</a>
+    <a href="{{ url_for('add_group') }}"class=button>Make a new group</a>
+  {% endif %}
+{% endblock %}

@@ -5,12 +5,14 @@ from contextlib import closing
 from flask.ext.sqlalchemy import SQLAlchemy
 from database import init_db, db_session, Base
 from models import User, Groups
+from rhinetest import Rhine
 
 # configuration
 #DATABASE = 'C:/Temp/testing.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USER = ''
+s = Rhine('sdf0b913e4b07b5243b7f527')
 #USERNAME = 'admin'
 #PASSWORD = 'default'
 
@@ -55,6 +57,10 @@ def signup():
             return redirect(url_for('login'))
     return render_template('signup.html', error=error)
 
+@app.route('/')
+def home():
+    return render_template('home.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -92,14 +98,43 @@ def logout():
     session.pop('logged_in', None)
     session.pop('user', None)
     flash('You were logged out')
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
-@app.route('/')
+@app.route('/show')
 def show_groups():
-    groups = Groups.query.order_by(Groups.id.desc())
-    #cur = g.db.execute('select title, text from groups order by id desc')
-    #groups = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
+    if not session.get('logged_in'):
+        abort(401)
+    error = None
+    groups = Groups.query.order_by(Groups.id)
+    userText = User.query.filter_by(name=session.get('user')).first().profile.split()
+    
+    groupList = list()
+    order = list()
+    for group in groups:
+        groupText = group.text.split()
+        difference = compareTexts(userText, groupText)
+        groupList.append(group)
+        order.append(difference)
+
+    #session['groupOrder'] = order
+    groups = sort(order, groups)
+    groups = groups[::-1]
     return render_template('show_groups.html', groups=groups)
+
+def compareTexts(text1, text2):
+    '''
+    totalDistance = 0
+    for word1 in text1:
+        for word2 in text2:
+            totalDistance += s.distance(word1, word2)
+    return totalDistance
+    '''
+    return s.distance(text1, text2)
+
+def sort(order, groups):
+    order, groups = zip(*sorted(zip(order, groups)))
+    order, groups = (list(t) for t in zip(*sorted(zip(order, groups))))
+    return groups
 
 @app.route('/add_group', methods=['GET', 'POST'])
 def add_group():
