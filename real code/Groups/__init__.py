@@ -116,6 +116,13 @@ def add_group():
         flash('New group was successfully posted')
         return redirect(url_for('show_groups'))
     return render_template('add_group', error=error)
+    
+@app.route('/single_profile')
+def single_profile():
+    name = request.args.get('name')
+    des = Groups.query.filter_by(title=name).first()
+    desc=des.text
+    return render_template('single_profile', data = name, descript=desc, method = 'single_profile')
 
 if __name__ == '__main__':
     app.run()
