@@ -96,8 +96,9 @@ def logout():
 
 @app.route('/')
 def show_groups():
-    cur = g.db.execute('select title, text from groups order by id desc')
-    groups = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
+    groups = Groups.query.order_by(Groups.id)
+    #cur = g.db.execute('select title, text from groups order by id desc')
+    #groups = [dict(title=row[0], text=row[1]) for row in cur.fetchall()]
     return render_template('show_groups.html', groups=groups)
 
 @app.route('/add_group', methods=['GET', 'POST'])

@@ -28,4 +28,4 @@ class Groups(Base):
         self.text = text
 
     def __repr__(self):
-        return '<Groups %r>' % (self.name)
+        return '<Groups %r>' % (self.title)
