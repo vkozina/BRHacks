@@ -4,7 +4,7 @@
       <dl>
         <dt>Interests:
         <dd><textarea type=text name=profile rows=5 cols=40>{{ enteredText }}</textarea>
-        <dd><input type=submit value='submit'>
+        <dd><input type=submit value='Submit'>
       </dl>
     </form>
  {% endblock %}

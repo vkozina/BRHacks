@@ -79,7 +79,8 @@
       color: lightblue;
       font-size: 1000%;
       font-weight: normal;
-      margin-bottom: 0em;
+      margin-top: 0em;
+      margin-bottom: .2em;
       text-shadow: 5px 5px 5px #00008B;
     }
     h2 {
@@ -130,6 +131,6 @@
   {% for message in get_flashed_messages() %}
     <class=flash>{{ message }}
   {% endfor %}
-    <h1 text-align= center>Group This!</h1>
+    <h1 text-align=center>Group This!</h1>
   {% block body %}{% endblock %}
 </div>
