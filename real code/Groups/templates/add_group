@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block body %}
  <form action="{{ url_for('add_group') }}" method=post class=add-entry>
       <dl>
         <dt>Group name:
@@ -7,3 +9,4 @@
         <dd><input type=submit value='submit'>
       </dl>
     </form>
+ {% endblock %}
