@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<html>
+<style>
+body {
+      color: #ffffff;
+      background-color: #ccffcc;
+      font-family: Impact, Charcoal, sans-serif;
+      font-size:14px;
+      -moz-transition-property: text-shadow;
+      -moz-transition-duration: 4s;
+      -webkit-transition-property: text-shadow;
+      -webkit-transition-duration: 4s;
+       text-shadow: #fff 10px 10px 25 px
+    }
+body.blurry {
+      -moz-transition-property: text-shadow;
+      -moz-transition-duration: 4s;
+      -webkit-transition-property: text-shadow;
+      -webkit-transition-duration: 4s;
+      text-shadow: #fff 0px 0px 25px;
+      }
+div {
+      width: 100%-25px;
+      padding: 25px;
+      border: 10px solid white;
+      margin: 25px;
+    }
+    a {
+      color: #00000c;
+    }
+.textColumn {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+
+      text-align: center;
+      padding-top: 11em;
+      background-color: #0188cc;
+      background-image: -moz-radial-gradient(left top, circle, #6ac9f9 0%, #0188cc 60%);
+      background-image: -webkit-gradient(radial, 0 0, 1, 0 0, 500, from(#6ac9f9), to(#0188cc));
+    }
+p{
+color:darkblue;
+font-size:100%;
+}
+
+h1{
+color:#CCFFFF;
+font-size:500%
+}
+p2{
+color:#6699FF;
+font-size:200%;
+}
+   
+
+</style>
+<div class=page>
+
+<body>
+<h1>{{data}}</h1> 
+<div class=metanav>
+<p2> {{descript}}</p2>
+
+</body>
+</html>
+
+ {% endblock %}

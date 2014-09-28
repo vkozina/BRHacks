@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <a href="{{ url_for('edit_profile') }}" class=button>Edit profile</a>
-    <a href="{{ url_for('add_group') }}"class=button>Make a new group</a>
+    <a href="{{ url_for('edit_profile') }}" class=button size="500">Edit profile</a>
+    <a href="{{ url_for('add_group') }}"class=button size="500">Make a new group</a>
     <ul class=Groups>
     {% for group in groups %}
-      <li><h2>{{ group.title }}</h2>{{ group.text|safe }}
+      <li> <h2> <a href="{{ url_for('single_profile') }}?name={{group.title}}">{{group.title}} </a></h2>{{ group.text|safe }}
     {% else %}
       <li><em>Unbelievable.  No entries here so far</em>
     {% endfor %}

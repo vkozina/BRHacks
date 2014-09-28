@@ -2,7 +2,7 @@
 <style>
 
     body {
-      color: #ffffff;
+      color: #000080;
       background-color: #ccffcc;
       font-family: Impact, Charcoal, sans-serif;
       font-size:14px;
@@ -76,23 +76,27 @@
     }
 
     h1 {
+      color: lightblue;
       font-size: 1000%;
       font-weight: normal;
-      margin-bottom: 0em;
+      margin-top: 0em;
+      margin-bottom: .2em;
       text-shadow: 5px 5px 5px #00008B;
     }
     h2 {
       font-size: 200%;
       font-weight: normal;
       margin-bottom: 0em;
+      color: #000080
     }
+
 
     input[type=text] {
       width: 150px;
       display: block;
       margin-bottom: 10px;
 
-      background-color: Gold;
+      background-color: LightYellow;
     }
 
     input[type=button] {
@@ -100,27 +104,33 @@
       margin-left: 35px;
       display: block;
     }
-  </style>
+    form{
+      display: inline;
+    }
+
+</style>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-
+    <form name="input" action="{{ url_for('show_groups') }}">
+      <input type="submit" value="HOME" class=button >
+    </form>
   {% if not session.logged_in %}
     <form name="input" action="{{ url_for('login') }}">
-      <input type="submit" value="log in" class=button >
+      <input type="submit" value="Log in" class=button >
     </form>
     <form name="input" action="{{ url_for('signup') }}">
-      <input type="submit" value="sign up" class=button>
+      <input type="submit" value="Sign up" class=button>
     </form>
   {% else %}
     </form>
       <form name="input" action="{{ url_for('logout') }}">
-      <input type="submit" value="log out" class=button>
+      <input type="submit" value="Log out" class=button>
     </form>
   {% endif %}
   
   {% for message in get_flashed_messages() %}
     <class=flash>{{ message }}
   {% endfor %}
-    <h1 text-align= center>Group This!</h1>
+    <h1 text-align=center>Group This!</h1>
   {% block body %}{% endblock %}
 </div>
